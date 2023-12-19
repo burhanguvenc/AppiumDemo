@@ -34,7 +34,9 @@ public class BaseTest {
 		// Download App Under Test
 		UiAutomator2Options options = new UiAutomator2Options();
 		options.setDeviceName("Rebophone");
-		options.setApp("C:\\Users\\burha\\eclipse-workspace\\AppiumDemo\\ApiDemos-debug.apk");
+		options.setChromedriverExecutable("C:\\Users\\burha\\eclipse-workspace\\AppiumDemo\\chromedriver_win32\\chromedriver.exe");
+		//options.setApp("C:\\Users\\burha\\eclipse-workspace\\AppiumDemo\\ApiDemos-debug.apk");
+		options.setApp("C:\\Users\\burha\\eclipse-workspace\\AppiumDemo\\General-Store.apk");
 
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -64,6 +66,19 @@ public class BaseTest {
 			    "direction", direction,
 			    "percent", 0.75
 			));
+	}
+	
+	public void dragAndDrop(WebElement ele,int x, int y) {
+		((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+			    "elementId", ((RemoteWebElement) ele).getId(),
+			    "endX", x,
+			    "endY", y
+			));
+	}
+	
+	public Double convertStringToDouble(String amount) {
+		Double price = Double.parseDouble(amount.substring(1));
+		return price;
 	}
 	
 	@AfterClass
