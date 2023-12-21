@@ -1,6 +1,7 @@
 package bgacademy;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -46,10 +47,11 @@ public class eCommerce_tc_2 extends BaseTest {
 				.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Jordan 6 Rings\"))"));
 
 		//Adding "Jordan 6 Rings" product in shopping cart 
-		int productCount = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).size();
+		List<WebElement> productPrices = driver.findElements(By.id("com.androidsample.generalstore:id/productName"));
+		int productCount = productPrices.size();
 
 		for (int i = 0; i < productCount; i++) {
-			String productName = driver.findElements(By.id("com.androidsample.generalstore:id/productName")).get(i)
+			String productName = productPrices.get(i)
 					.getText();
 
 			if (productName.equalsIgnoreCase("Jordan 6 Rings")) {
