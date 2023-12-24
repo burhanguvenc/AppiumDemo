@@ -1,21 +1,23 @@
 package bgacademy;
 
+import java.net.MalformedURLException;
 import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
 
 public class ScrollDemo extends BaseTest {
 
 	@Test
-	public void ScrollDemoTest() throws InterruptedException {
+	public void ScrollDemoTest() throws MalformedURLException, InterruptedException {
 
 		driver.findElement(AppiumBy.accessibilityId("Views")).click();
-		
-		//Scrolling Method 1
-		//driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"))"));
-		
-		//Scrolling method 2
+
+		// where to scroll is known prior
+		driver.findElement(
+				AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"WebView\"));"));
+
+		// No prior idea
 		scrollToEndAction();
-		Thread.sleep(2000);
 
 	}
+
 }
